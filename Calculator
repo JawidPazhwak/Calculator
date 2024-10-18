@@ -1,0 +1,246 @@
+# import tkinter and math libraries
+from tkinter import *
+import math
+#from PIL import ImageTk, Image
+
+# create tkinter window
+root = Tk()
+root.title("Simple Calculator")
+root.configure(bg="#1E1E1E")
+
+# create entry field where user can input
+"""my_background = ImageTk.PhotoImage(Image.open("D:/jawid/jawid illustration.jpg"))
+my_label = Label(root, image = my_background)
+my_label.grid()
+"""
+
+input = Entry(root, width=50, borderwidth=20, insertbackground="#00FF00", highlightbackground="#00FF00", highlightthickness=1, selectbackground="#004400", font=("Courier New", 10), fg="#00FF00", bg="#1E1E1E")
+
+# configure window icon
+root.iconbitmap("D:/jawid/vector.png")
+
+# place entry field on window
+input.grid(row=0, column=0, columnspan=6, padx=1, pady=1)
+
+# function to blink the cursor
+def blinking_cursor():
+    current_color = input.cget("insertbackground")
+    new_color = "white" if current_color== "#00FF00" else "#00FF00"
+    input.config(insertbackground=new_color)
+    root.after(500, blinking_cursor)
+
+# call blinking_cursor function
+blinking_cursor()    
+
+# function to handle button clicks
+def button_click(number):
+   
+   current = input.get()
+   input.delete(0,END)
+   input.insert(0, str(current) + str(number))
+
+# function to handle clear button
+def button_clear():
+   
+   #current = input.get()
+   input.delete(0,END)
+   #input.insert(0, str(current) + str(number))  
+
+# function to handle addition button
+def button_add():
+    try:
+        first_number = input.get()
+        global first_num
+
+        global operations 
+        operations = "addition"
+    
+        first_num = int(first_number)  
+        input.delete(0,END)
+    except ValueError:
+        input.insert(0, "Error")
+
+# function to handle subtraction button
+def button_subtract():
+    try:
+        first_number = input.get()
+        global first_num
+
+        global operations 
+        operations = "subtraction"
+
+        first_num = int(first_number)  
+        input.delete(0,END)
+    except ValueError:
+        input.insert(0, "Error")        
+# function to handle multiplication button
+def button_multiply():
+    try:
+        first_number = input.get()
+        global first_num
+
+        global operations 
+        operations = "multiplication"
+
+        first_num = int(first_number)  
+        input.delete(0,END)
+    except ValueError:
+        input.insert(0, "Error")
+# function to handle division button
+def button_divide ():
+    try:
+        first_number = input.get()
+        global first_num
+
+        global operations 
+        operations = "division"
+
+        first_num = int(first_number)  
+        input.delete(0,END)    
+    except ValueError:
+        input.insert(0, "Error")
+# function to handle power button
+def button_power():
+    try:
+        first_number = input.get()
+        global first_num
+
+        global operations 
+        operations = "power"
+
+        first_num = int(first_number)  
+        input.delete(0,END)  
+    except ValueError:
+        input.insert(0, "Error") 
+# function to handle cosin button
+def button_cosin():    
+    try:
+        global operations 
+        operations = "cosin"
+        
+        """global first_num
+        first_number = input.get()
+        
+        global operations 
+        operations = "cosin"
+    
+        first_num = int(first_number)  
+        input.delete(0,END)"""
+        input.delete(0, END)
+    except ValueError:
+        input.insert(0, "Error")  
+          
+# function to handle sine button
+def button_sine():
+    try:
+        """first_number = input.get()
+        global first_num"""
+
+        global operations 
+        operations = "sine"
+
+        """first_num = int(first_number)"""  
+        input.delete(0,END) 
+    except ValueError:
+        input.insert(0, "Error")
+# function to handle tan button
+def button_tan():
+    try:
+        """first_number = input.get()
+        global first_num"""
+
+        global operations 
+        operations = "tan"
+
+        """first_num = int(first_number)"""  
+        input.delete(0,END)
+    except ValueError:
+        input.insert(0, "Error")         
+# function to handle clear button
+def button_clear():
+    try:
+        input.delete(0,END)
+    except ValueError:
+        input.insert(0, "Error")
+# function to handle equal button
+def button_equal():  
+   try:
+       second_number = input.get()   
+       input.delete(0,END)
+   
+       if operations == "addition":
+          input.insert(0, first_num + int(second_number))
+       elif operations == "subtraction":
+            input.insert(0, first_num - int(second_number))
+       elif operations == "multiplication":
+            input.insert(0, first_num * int(second_number))
+       elif operations == "division":
+            input.insert(0, first_num / int(second_number))                
+       elif operations == "power":
+            input.insert(0, pow(first_num,int(second_number)))
+       elif operations == "cosin":
+            input.insert(0, math.cos(int(second_number)))
+       elif operations == "sine":
+            input.insert(0, math.sin(int(second_number)))
+       elif operations == "tan":
+            input.insert(0, math.tan(int(second_number)))                 
+            input.insert(0, math.tan(int(second_number)))                
+       else:
+            input.insert(0, "Invalid Operation")
+
+   except ValueError:
+        input.insert(0, "Error")
+
+# create buttons
+# Define buttons
+
+button_1 = Button(root, text="1", padx=30, pady=30, borderwidth=5, command=lambda: button_click(1), font="monoscope", bg="#1E1E1E", fg="#00FF00", activebackground="#00CC00")
+button_2 = Button(root, text="2", padx=30, pady=30, borderwidth=5, command=lambda: button_click(2), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_3 = Button(root, text="3", padx=30, pady=30, borderwidth=5, command=lambda: button_click(3), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_4 = Button(root, text="4", padx=30, pady=30, borderwidth=5, command=lambda: button_click(4), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_5 = Button(root, text="5", padx=30, pady=30, borderwidth=5, command=lambda: button_click(5), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_6 = Button(root, text="6", padx=30, pady=30, borderwidth=5, command=lambda: button_click(6), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_7= Button(root, text="7", padx=30, pady=30, borderwidth=5, command=lambda: button_click(7), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_8 = Button(root, text="8", padx=30, pady=30, borderwidth=5, command=lambda: button_click(8), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_9 = Button(root, text="9", padx=30, pady=30, borderwidth=5, command=lambda: button_click(9), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_0 = Button(root, text="0", padx=30, pady=30, borderwidth=5, command=lambda: button_click(0), font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+
+button_add = Button(root, text="+", padx=80, pady=29, borderwidth=10, command=button_add, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_equal = Button(root, text="=", padx=80, pady=29, borderwidth=10, command=button_equal, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_clear = Button(root, text="Clear", padx=63, pady=29, borderwidth=10, command=button_clear, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+
+button_subtract = Button(root, text="-", padx=50, pady=29, borderwidth=10, command=button_subtract, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_multiply = Button(root, text="*", padx=50, pady=29, borderwidth=10, command=button_multiply, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_divide = Button(root, text="/", padx=83, pady=29, borderwidth=10, command=button_divide, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_power = Button(root, text="^", padx=50, pady=29, borderwidth=10, command=button_power, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_cosin = Button(root, text="cos", padx=51, pady=29, borderwidth=10, command=button_cosin, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_sine = Button(root, text="sin", padx=55, pady=29, borderwidth=10, command=button_sine, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+button_tan = Button(root, text="tan", padx=53, pady=29, borderwidth=10, command=button_tan, font="monoscope", bg="#1E1E1E",fg="#00FF00", activebackground="#00CC00")
+# Put buttons on the screen        
+
+button_1.grid(row=3,column=0)
+button_2.grid(row=3,column=1)
+button_3.grid(row=3,column=2)
+
+button_4.grid(row=2,column=0)
+button_5.grid(row=2,column=1)
+button_6.grid(row=2,column=2)
+
+button_7.grid(row=1,column=0)
+button_8.grid(row=1,column=1)
+button_9.grid(row=1,column=2)
+
+button_0.grid(row=4,column=1)
+
+button_add.grid(row=1, column=3)
+button_clear.grid(row=2, column=3)
+button_equal.grid(row=4, column=3)
+button_subtract.grid(row=1, column=5)
+button_multiply.grid(row=2, column=5)
+button_divide.grid(row=3, column=3)
+button_power.grid(row=3, column=5)
+button_cosin.grid(row=2, column=6)
+button_sine.grid(row=1, column=6)
+button_tan.grid(row=3, column=6)
+
+root.mainloop()
